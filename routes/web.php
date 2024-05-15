@@ -21,8 +21,7 @@ use App\Services\Settings;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/loginAz', [HubspotApiController::class, 'loginAz']);
-Route::get('/callback', [HubspotApiController::class, 'callback']);
+
 
 Route::get('/us-clear', function () {
 
