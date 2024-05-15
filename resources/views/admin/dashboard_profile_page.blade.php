@@ -40,11 +40,10 @@
                                 <img src="assets/images/profile-page-imgs/user.jpg" alt="Anna Smith" />
                             </div>
                         </div>
-
                     </div>
 
 
-                    <div class="text-start container mt-3">
+                    <div class="text-start container mt-5 ml-4" style="margin-left: 3px;">
                         <nav>
                             <button class=" btn-custom" type="button"><svg class="i-icon"
                                     xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 30 24">
@@ -64,158 +63,156 @@
                     </div>
                 </div>
                 <div class="container">
-                    <from>
-                        <form class="mt-4">
-                            <div class="row mb-4">
-                                <div class="col">
-                                    <div data-mdb-input-init class="form-outline">
-                                        <label class="form-label label-custom" for="name">Name</label>
-                                        <input type="text" id="name" class="form-control" />
 
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div data-mdb-input-init class="form-outline">
-                                        <label class="form-label label-custom" for="nick">Nick Name</label>
-                                        <input type="text" id="nick" class="form-control" />
-                                    </div>
+                    <form class="mt-4">
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label label-custom" for="name">Name</label>
+                                    <input type="text" id="name" class="form-control"
+                                        value="{{ $userData->name }}" />
+
                                 </div>
                             </div>
-                            <div class="row mb-4">
-                                <div class="col">
-                                    <div data-mdb-input-init class="form-outline">
-                                        <label class="form-label label-custom" for="talent">Talent</label>
-                                        <input type="text" id="talent" class="form-control" />
-
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div data-mdb-input-init class="form-outline">
-                                        <label class="form-label label-custom" for="email">Email address</label>
-                                        <input type="email" id="email" class="form-control" />
-
-                                    </div>
+                            <div class="col">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label label-custom" for="nick">Nick Name</label>
+                                    <input type="text" id="nick" class="form-control"
+                                        value="{{ $userData->username }}" />
                                 </div>
                             </div>
-                            <div class="row mb-4">
-                                <div class="col">
-                                    <div data-mdb-input-init class="form-outline">
-                                        <label class="form-label label-custom" for="state">State</label>
-                                        <input type="text" id="state" class=" input-custom form-control " />
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label label-custom" for="talent">Talent</label>
+                                    <input type="text" id="talent" class="form-control"
+                                        value="{{ $userData->designation }}" />
 
-                                    </div>
                                 </div>
-                                <div class="col">
-                                    <div data-mdb-input-init class="form-outline">
-                                        <label class="form-label label-custom" for="age">Age</label>
-                                        <input type="email" id="age" class="form-control" />
+                            </div>
+                            <div class="col">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label label-custom" for="email">Email address</label>
+                                    <input type="email" id="email" class="form-control"
+                                        value="{{ $userData->email }}" />
 
-                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label label-custom" for="state">State</label>
+                                    <input type="text" id="state" class=" input-custom form-control"
+                                        value="{{ $userData->address }}" />
+
                                 </div>
                             </div>
 
+                            <div class="col">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label label-custom" for="age">Age</label>
+                                    <select id="age" class="form-control select-custom"
+                                        style="border-radius: 15px; background-color:#F9F9F9">
+                                        <option value="{{ $userData->age }}">{{ $userData->age }}</option>
+                                        <option value="18-22">18-22</option>
+                                        <option value="23-27">23-27</option>
+                                        <option value="28-32">28-32</option>
+                                        <option value="33-37">33-37</option>
+                                        <option value="38-42">38-42</option>
+                                        <option value="43-47">43-47</option>
+                                        <option value="48-52">48-52</option>
+                                        <option value="52+">52+</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                            <!-- Submit button -->
-                            <!-- <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Sign up</button> -->
+                        </div>
 
-                            <!-- Register buttons -->
-                        </form>
+
+
+
+                        <!-- Submit button -->
+                        <!-- <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Sign up</button> -->
+
+                        <!-- Register buttons -->
+                    </form>
                 </div>
                 <div class="container">
                     <p class="span-custom ">Tags</p>
                     <div class="scrollmenu">
-                        <button class="tags">Piano</button>
-                        <button class="tags">Notes</button>
-                        <button class="tags">Guitar</button>
-                        <button class="tags">Artist</button>
-                        <button class="tags">Artist</button>
-                        <button class="tags">Artist</button>
-                        <button class="tags">Artist</button>
-                        <button class="tags">Artist</button>
-                        <button class="tags">Artist</button>
-
+                        @foreach ($tags as $tag)
+                            <button class="tags">{{ $tag->name }}</button>
+                        @endforeach
                     </div>
 
                 </div>
                 <div class="container">
                     <p class="span-custom mb-10 ">Bio</p>
                     <div>
-                        <textarea name="" id=""></textarea>
+                        <textarea name="" id="">{{ $userData->description }}</textarea>
                     </div>
 
                 </div>
-                <div class="container">
+                {{-- <div class="container">
                     <p class="span-custom mb-10 ">Videos</p>
-                    <div class=" video-custom">
+                    <div class="video-custom">
 
                         <div class="video-item">
                             <img class="video-custom video-img video-thumbnail mt-3"
                                 src="assets/images/products/video.jpg" alt="Video Thumbnail">
-                            <div class="dropdown">
-                                <button class="dropdown-custom btn btn-secondary dropdown-toggle position-absolute"
-                                    type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    &#8942;
-                                </button>
-                                <div class="drop dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0;">
-                                    <button type="button" class="dropdown-item edit-btn">Edit</button>
-                                    <button type="button" class="dropdown-item pin-btn">Pin</button>
-                                    <button type="button" class="dropdown-item delete-btn">Delete</button>
-                                </div>
-                            </div>
                         </div>
 
 
                         <div class="video-item">
                             <img class="video-custom video-img video-thumbnail mt-3"
                                 src="assets/images/products/video.jpg" alt="Video Thumbnail">
-                            <div class="dropdown">
-                                <button class="dropdown-custom btn btn-secondary dropdown-toggle position-absolute"
-                                    type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    &#8942;
-                                </button>
-                                <div class="drop dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0;">
-                                    <button type="button" class="dropdown-item edit-btn">Edit</button>
-                                    <button type="button" class="dropdown-item pin-btn">Pin</button>
-                                    <button type="button" class="dropdown-item delete-btn">Delete</button>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="video-item">
                             <img class="video-custom video-img video-thumbnail mt-3"
                                 src="assets/images/products/video.jpg" alt="Video Thumbnail">
-                            <div class="dropdown">
-                                <button class="dropdown-custom btn btn-secondary dropdown-toggle position-absolute"
-                                    type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    &#8942;
-                                </button>
-                                <div class="drop dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0;">
-                                    <button type="button" class="dropdown-item edit-btn">Edit</button>
-                                    <button type="button" class="dropdown-item pin-btn">Pin</button>
-                                    <button type="button" class="dropdown-item delete-btn">Delete</button>
-                                </div>
-                            </div>
                         </div>
 
 
                         <div class="video-item">
                             <img class="video-custom video-img video-thumbnail mt-3"
                                 src="assets/images/products/video.jpg" alt="Video Thumbnail">
-                            <div class="dropdown">
-                                <button class="dropdown-custom btn btn-secondary dropdown-toggle position-absolute"
-                                    type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    &#8942;
-                                </button>
-                                <div class="drop dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0;">
-                                    <button type="button" class="dropdown-item edit-btn">Edit</button>
-                                    <button type="button" class="dropdown-item pin-btn">Pin</button>
-                                    <button type="button" class="dropdown-item delete-btn">Delete</button>
-                                </div>
+                        </div>
+
+                    </div>
+                </div> --}}
+                <div class="" style="display: flex; justify-content:space-between">
+                    <div class="video-title">
+                        <p class="span-custom mb-10 ">Videos</p>
+                    </div class="action-btn">
+                    <div>
+                        <button class="btn btn-default p-2" style="font-weight: 500"><i style="width: 40px; height:40px"
+                                class='bx bx-plus'></i></button>
+                        <Button cclass="btn btn-default p-2" style="font-weight: 500"><i style="font-size: 15px;"
+                                class='bx bxs-grid'></i></Button>
+                    </div>
+                </div>
+
+                <div class="video-custom">
+
+                    <div class="container mb-5">
+                        <div class="row">
+                            <div class="col">
+                                <img class="video-custom video-img video-thumbnail mt-3"
+                                    src="assets/images/products/video.jpg" alt="Video Thumbnail">
+                            </div>
+                            <div class="col">
+                                <img class="video-custom video-img video-thumbnail mt-3"
+                                    src="assets/images/products/video.jpg" alt="Video Thumbnail">
+
                             </div>
                         </div>
 
                     </div>
                 </div>
+
             </div>
 
         </div>

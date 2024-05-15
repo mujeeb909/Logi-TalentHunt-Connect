@@ -14,6 +14,12 @@ class Tag extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
+
+    protected $fillable = [
+        'name',
+        'user_id',
+
+    ];
     public function products()
     {
         return $this->belongsToMany(Product::class)->using(ProductTag::class);

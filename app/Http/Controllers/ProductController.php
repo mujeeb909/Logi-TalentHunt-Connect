@@ -252,6 +252,9 @@ class ProductController extends Controller
 
     public function profilePage()
     {
-        return view('admin.dashboard_profile_page');
+        $userId = Session::get('user_id');
+        $userData = User::where('id', $userId)->first();
+        $tags = Tag::where('user_id', $userId)->get();
+        return view('admin.dashboard_profile_page', ['userData' => $userData, 'tags' => $tags]);
     }
 }

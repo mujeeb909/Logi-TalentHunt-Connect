@@ -189,10 +189,9 @@ a {
 .video-custom {
     background-color: #f9f9f9;
     border-radius: 24px;
-
-    display: flex;
+    /* display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
 }
 .play-btn {
     position: absolute;
@@ -240,6 +239,22 @@ left:850px;
     text-align: left;
 }
 .input-custom {
+    width: 444px;
+    height: 50px;
+    top: 873px;
+    left: 370px;
+    gap: 0px;
+    border-radius: 30px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+
+.select-custom {
     width: 444px;
     height: 50px;
     top: 873px;
@@ -304,11 +319,15 @@ div.scrollmenu a:hover {
     background-color: #777;
 }
 textarea {
-    border-radius: 35px;
+    border-radius: 30px;
     height: 175px;
-    width: 1073px;
+    width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.02);
     background-color: rgba(249, 249, 249, 1);
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
 }
 
 /* Responsiveness */
