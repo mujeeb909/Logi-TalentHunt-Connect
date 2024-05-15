@@ -16,9 +16,16 @@
 
 
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class=" container breadcrumb-tt pe-3">My Profile </div>
-
-
+                <div class="breadcrumb-title pe-3">Profile Page</div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item"><a href="javascript:;"></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
             <!--end breadcrumb-->
 
@@ -29,7 +36,7 @@
                     <header></header>
                     <div class="cols__container">
                         <div class="left__col">
-                            <div class="img__container" style="left: 57px;">
+                            <div class="img__container" style="left: -64px;">
                                 <img src="assets/images/profile-page-imgs/user.jpg" alt="Anna Smith" />
                             </div>
                         </div>
@@ -37,7 +44,7 @@
                     </div>
 
 
-                    <div class="text-start container">
+                    <div class="text-start container mt-3">
                         <nav>
                             <button class=" btn-custom" type="button"><svg class="i-icon"
                                     xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 30 24">
@@ -46,7 +53,8 @@
                                 </svg>View as</button>
                             <button type="button" class="btn-custom">+ Add Section</button>
                             <button type="button" class="btn-custom"> <svg class="i-icon"
-                                    xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 31 31">
+                                    xmlns="http://www.w3.org/2000/svg" width="3em" style="font-weight: 300"
+                                    height="3em" viewBox="0 0 31 31">
                                     <path fill="white" fill-rule="evenodd"
                                         d="M16.5 2.25a3.25 3.25 0 0 0-3.2 3.824L8.57 9.386a.757.757 0 0 0-.068.053a3.25 3.25 0 1 0 0 5.121a.755.755 0 0 0 .068.054l4.73 3.312a3.25 3.25 0 1 0 .617-1.4l-4.479-3.135c.2-.422.312-.893.312-1.391s-.112-.97-.312-1.391l4.48-3.136A3.25 3.25 0 1 0 16.5 2.25M14.75 5.5a1.75 1.75 0 1 1 3.5 0a1.75 1.75 0 0 1-3.5 0M6.5 10.25a1.75 1.75 0 1 0 0 3.5a1.75 1.75 0 0 0 0-3.5m10 6.5a1.75 1.75 0 1 0 0 3.5a1.75 1.75 0 0 0 0-3.5"
                                         clip-rule="evenodd" />
