@@ -41,7 +41,9 @@ Route::get('logout', [AuthController::class, 'logout']);
 
 
 
-
+Route::get('/', function () {
+    return view('landing');
+});
 
 
 Route::middleware([AlreadyLoggedIn::class])->group(function () {
@@ -54,7 +56,7 @@ Route::middleware([AlreadyLoggedIn::class])->group(function () {
 
     Route::post('register', [AuthController::class, 'store']);
 
-    Route::get('/', [AuthController::class, 'loginForm'])->name('login');
+    Route::get('login', [AuthController::class, 'loginForm'])->name('login');
     Route::get('authentication-forgot-password', [AuthController::class, 'passwordForgotForm'])->name('authentication-forgot-password');
     Route::post('/password/forgot', [AuthController::class, 'sendResetLink'])->name('forgot.password.link');
     Route::get('/password-reset-{token}', [AuthController::class, 'showResetForm'])->name('reset.password.form');
