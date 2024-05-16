@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.landing_layout')
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
-
-    <link rel="stylesheet" href="assets/css/landing_page.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Darker Grotesque:wght@500;600;700;800;900&display=swap" />
-</head>
-
-<body>
+@section('landing-page')
     <div class="landing-page">
         <header class="rectangle-parent">
             <div class="frame-child"></div>
@@ -23,7 +11,6 @@
                 <nav class="home-parent">
                     <div class="home"><a class="pricing-a" href="/">Home</a></div>
                     <div class="pricing"><a class="pricing-a" href="#pricing">Pricing</a></div>
-                    <div class="contact">Contact</div>
                 </nav>
             </nav>
             <div class="frame-container">
@@ -32,18 +19,17 @@
                     <div class="frame-item"></div>
                 </button>
             </div>
+
+
         </header>
+
+
+
         <div class="landing-page-child"></div>
         <section class="frame-parent">
             <div class="rectangle-group">
                 <div class="frame-inner"></div>
-                {{-- <div class="rectangle-container">
-                    <div class="rectangle-div"></div>
-                    <div class="bisearch-wrapper">
-                        <img class="bisearch-icon" alt="" src="./public/bisearch.svg" />
-                    </div>
-                    <input class="search" placeholder="Search" type="text" />
-                </div> --}}
+
             </div>
             <div class="bxsup-arrow-parent">
                 <img class="bxsup-arrow-icon" loading="lazy" alt="" src="assets/arrows/bxs_up-arrow.png" />
@@ -73,8 +59,7 @@
                                 <div class="ellipse-group">
                                     <div class="frame-child4"></div>
                                     <div class="frame-child5"></div>
-                                    <img class="bxsup-arrow-icon2" alt=""
-                                        src="assets/arrows/bxs_up-arrow-3.png" />
+                                    <img class="bxsup-arrow-icon2" alt="" src="assets/arrows/bxs_up-arrow-3.png" />
                                 </div>
                             </div>
                             <div class="showcase-your-skills-and-land-wrapper">
@@ -119,32 +104,7 @@
                         your talent forward.
                     </h2>
                 </div>
-                {{-- <div class="frame-parent3">
-                    <div class="frame-wrapper3">
-                        <button class="rectangle-parent2">
-                            <div class="frame-child8"></div>
-                            <div class="group-div">
-                                <div class="rectangle-parent3">
-                                    <img class="rectangle-icon" alt="" src="assets/images/Group_25_1.png" />
 
-                                    <img class="ellipse-icon" alt="" src="assets/images/Group_26.png" />
-                                </div>
-                            </div>
-                            <div class="customize-your-profile-wrapper">
-                                <div class="customize-your-profile">
-                                    Customize your Profile
-                                </div>
-                            </div>
-                        </button>
-                    </div>
-                    <button class="rectangle-parent4">
-                        <div class="frame-child9"></div>
-                        <div class="pin-your-best">Pin your <br /> best showcase</div>
-                        <div class="group-25-1-wrapper">
-                            <img class="group-25-1" alt="" src="assets/images/Group_25_1.png" />
-                        </div>
-                    </button>
-                </div> --}}
 
                 <div class="frame-parent3">
 
@@ -416,125 +376,125 @@
             </div>
         </div>
         {{-- <section class="landing-page-inner6">
-            <div class="frame-parent20">
-                <div class="frame-wrapper16">
-                    <div class="frame-parent21">
-                        <button class="monthly-wrapper">
-                            <div class="monthly">Monthly</div>
-                        </button>
-                        <button class="annually-wrapper">
-                            <div class="annually">Annually</div>
-                        </button>
-                    </div>
-                </div>
-                <div class="frame-parent22">
-                    <div class="frame-wrapper17">
-                        <div class="rectangle-parent17">
-                            <div class="frame-child40"></div>
-                            <div class="frame-parent23">
-                                <div class="frame-wrapper18">
-                                    <div class="frame-parent24">
-                                        <div class="basic-plan-wrapper">
-                                            <div class="basic-plan">Basic Plan</div>
-                                        </div>
-                                        <div class="month">$45/Month</div>
-                                    </div>
-                                </div>
-                                <div class="frame-child41"></div>
-                            </div>
-                            <div class="frame-wrapper19">
-                                <div class="features-parent">
-                                    <div class="features">Features</div>
-                                    <div class="features-1-features-container">
-                                        <ul class="features-1-features-1-features">
-                                            <li class="features-1">Features 1</li>
-                                            <li class="features-11">Features 1</li>
-                                            <li class="features-12">Features 1</li>
-                                            <li>Features 1</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="frame-wrapper20">
-                                <button class="rectangle-parent18">
-                                    <div class="frame-child42"></div>
-                                    <div class="purchase">Purchase</div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rectangle-parent19">
-                        <div class="frame-child43"></div>
-                        <div class="frame-parent25">
-                            <div class="business-plan-wrapper">
-                                <h3 class="business-plan">Business Plan</h3>
-                            </div>
-                            <div class="month-wrapper">
-                                <div class="month1">$45/Month</div>
-                            </div>
-                            <div class="frame-child44"></div>
-                        </div>
-                        <div class="frame-wrapper21">
-                            <div class="features-group">
-                                <div class="features1">Features</div>
-                                <div class="features-1-features-1-features-parent">
-                                    <div class="features-1-features-container1">
-                                        <ul class="features-1-features-1-features1">
-                                            <li class="features-13">Features 1</li>
-                                            <li class="features-14">Features 1</li>
-                                            <li class="features-15">Features 1</li>
-                                            <li class="features-16">Features 1</li>
-                                            <li>Features 1</li>
-                                        </ul>
-                                    </div>
-                                    <div class="frame-wrapper22">
-                                        <button class="rectangle-parent20">
-                                            <div class="frame-child45"></div>
-                                            <div class="purchase1">Purchase</div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="frame-wrapper23">
-                        <div class="frame-parent26">
-                            <div class="rectangle-parent21">
-                                <div class="frame-child46"></div>
-                                <div class="frame-wrapper24">
-                                    <div class="frame-parent27">
-                                        <div class="enterprise-plan-wrapper">
-                                            <div class="enterprise-plan">Enterprise Plan</div>
-                                        </div>
-                                        <div class="month2">$45/Month</div>
-                                    </div>
-                                </div>
-                                <div class="features-container">
-                                    <div class="features2">Features</div>
-                                    <div class="features-1-features-container2">
-                                        <ul class="features-1-features-1-features2">
-                                            <li class="features-17">Features 1</li>
-                                            <li class="features-18">Features 1</li>
-                                            <li class="features-19">Features 1</li>
-                                            <li>Features 1</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="frame-wrapper25">
-                                    <button class="rectangle-parent22">
-                                        <div class="frame-child47"></div>
-                                        <div class="purchase2">Purchase</div>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="line-frame">
-                                <div class="frame-child48"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> --}}
+      <div class="frame-parent20">
+          <div class="frame-wrapper16">
+              <div class="frame-parent21">
+                  <button class="monthly-wrapper">
+                      <div class="monthly">Monthly</div>
+                  </button>
+                  <button class="annually-wrapper">
+                      <div class="annually">Annually</div>
+                  </button>
+              </div>
+          </div>
+          <div class="frame-parent22">
+              <div class="frame-wrapper17">
+                  <div class="rectangle-parent17">
+                      <div class="frame-child40"></div>
+                      <div class="frame-parent23">
+                          <div class="frame-wrapper18">
+                              <div class="frame-parent24">
+                                  <div class="basic-plan-wrapper">
+                                      <div class="basic-plan">Basic Plan</div>
+                                  </div>
+                                  <div class="month">$45/Month</div>
+                              </div>
+                          </div>
+                          <div class="frame-child41"></div>
+                      </div>
+                      <div class="frame-wrapper19">
+                          <div class="features-parent">
+                              <div class="features">Features</div>
+                              <div class="features-1-features-container">
+                                  <ul class="features-1-features-1-features">
+                                      <li class="features-1">Features 1</li>
+                                      <li class="features-11">Features 1</li>
+                                      <li class="features-12">Features 1</li>
+                                      <li>Features 1</li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="frame-wrapper20">
+                          <button class="rectangle-parent18">
+                              <div class="frame-child42"></div>
+                              <div class="purchase">Purchase</div>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              <div class="rectangle-parent19">
+                  <div class="frame-child43"></div>
+                  <div class="frame-parent25">
+                      <div class="business-plan-wrapper">
+                          <h3 class="business-plan">Business Plan</h3>
+                      </div>
+                      <div class="month-wrapper">
+                          <div class="month1">$45/Month</div>
+                      </div>
+                      <div class="frame-child44"></div>
+                  </div>
+                  <div class="frame-wrapper21">
+                      <div class="features-group">
+                          <div class="features1">Features</div>
+                          <div class="features-1-features-1-features-parent">
+                              <div class="features-1-features-container1">
+                                  <ul class="features-1-features-1-features1">
+                                      <li class="features-13">Features 1</li>
+                                      <li class="features-14">Features 1</li>
+                                      <li class="features-15">Features 1</li>
+                                      <li class="features-16">Features 1</li>
+                                      <li>Features 1</li>
+                                  </ul>
+                              </div>
+                              <div class="frame-wrapper22">
+                                  <button class="rectangle-parent20">
+                                      <div class="frame-child45"></div>
+                                      <div class="purchase1">Purchase</div>
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="frame-wrapper23">
+                  <div class="frame-parent26">
+                      <div class="rectangle-parent21">
+                          <div class="frame-child46"></div>
+                          <div class="frame-wrapper24">
+                              <div class="frame-parent27">
+                                  <div class="enterprise-plan-wrapper">
+                                      <div class="enterprise-plan">Enterprise Plan</div>
+                                  </div>
+                                  <div class="month2">$45/Month</div>
+                              </div>
+                          </div>
+                          <div class="features-container">
+                              <div class="features2">Features</div>
+                              <div class="features-1-features-container2">
+                                  <ul class="features-1-features-1-features2">
+                                      <li class="features-17">Features 1</li>
+                                      <li class="features-18">Features 1</li>
+                                      <li class="features-19">Features 1</li>
+                                      <li>Features 1</li>
+                                  </ul>
+                              </div>
+                          </div>
+                          <div class="frame-wrapper25">
+                              <button class="rectangle-parent22">
+                                  <div class="frame-child47"></div>
+                                  <div class="purchase2">Purchase</div>
+                              </button>
+                          </div>
+                      </div>
+                      <div class="line-frame">
+                          <div class="frame-child48"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section> --}}
 
         <section class="landing-page-inner6">
             <div class="frame-parent20">
@@ -746,45 +706,4 @@
             </div>
         </footer>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const monthlyBtn = document.querySelector('.monthly-wrapper');
-            const annuallyBtn = document.querySelector('.annually-wrapper');
-            const planElements = document.querySelectorAll('[data-plan-type]');
-
-            const pricing = {
-                basic: {
-                    monthly: '$45/Month',
-                    annually: '$450/Year'
-                },
-                business: {
-                    monthly: '$75/Month',
-                    annually: '$750/Year'
-                },
-                enterprise: {
-                    monthly: '$105/Month',
-                    annually: '$1050/Year'
-                }
-            };
-
-            function updatePlans(planType) {
-                planElements.forEach(element => {
-                    const type = element.getAttribute('data-plan-type');
-                    const priceElement = element.querySelector('.month, .month1, .month2');
-                    priceElement.textContent = pricing[type][planType];
-                });
-            }
-
-            monthlyBtn.addEventListener('click', function() {
-                updatePlans('monthly');
-            });
-
-            annuallyBtn.addEventListener('click', function() {
-                updatePlans('annually');
-            });
-        });
-    </script>
-</body>
-
-</html>
+@endsection

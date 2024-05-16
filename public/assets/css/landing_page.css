@@ -9,6 +9,16 @@ body {
 .pricing-a:visited {
     color: white;
 }
+
+.talent-hub-wrapper {
+    flex-grow: 1;
+}
+
+.frame-wrapper nav {
+    display: flex;
+    gap: 20px;
+}
+
 .frame-child {
     height: 132px;
     width: 1512px;
@@ -63,7 +73,7 @@ body {
 .home-parent {
     align-self: stretch;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 20px;
     text-align: center;
     font-size: 22px;
