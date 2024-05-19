@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Darker Grotesque:wght@500;600;700;800;900&display=swap" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>TalentHunt Connect</title>
 </head>
 
@@ -63,6 +64,33 @@
             hamburgerMenu.addEventListener('click', function() {
                 mobileNav.classList.toggle('show');
             });
+        });
+    </script>
+    <script>
+        function toggleMenu() {
+            var mobileMenu = document.getElementById("mobile-menu");
+            var mobileHamburger = document.getElementById("mobile-hamburger");
+
+            if (mobileMenu.style.display === "flex") {
+                mobileMenu.style.display = "none";
+                mobileHamburger.style.display = "block";
+            } else {
+                mobileMenu.style.display = "flex";
+                mobileHamburger.style.display = "none";
+            }
+        }
+
+        // Reset menu state on window resize
+        window.addEventListener('resize', function() {
+            var mobileMenu = document.getElementById("mobile-menu");
+            var mobileHamburger = document.getElementById("mobile-hamburger");
+
+            if (window.innerWidth >= 842) {
+                mobileMenu.style.display = "none";
+                mobileHamburger.style.display = "none";
+            } else {
+                mobileHamburger.style.display = "block";
+            }
         });
     </script>
 </body>

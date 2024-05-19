@@ -11,7 +11,6 @@ body {
 }
 
 .talent-hub-wrapper {
-    flex-grow: 1;
 }
 
 .frame-wrapper nav {
@@ -150,6 +149,102 @@ body {
     color: #fff;
     font-family: Inter;
 }
+
+.rectangle-parent .hamburger-menu {
+    display: none;
+}
+
+@media (max-width: 842px) {
+    .rectangle-parent .hamburger-menu {
+        display: block;
+    }
+    .rectangle-parent .frame-container .join-btn {
+        display: none;
+    }
+    #mobile-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 1502px) {
+    .bxsup-arrow-parent .frame-wrapper1 .frame-button {
+        display: none;
+    }
+
+    @media (max-width: 1112px) {
+        .landing-page-inner .why-talent-parent {
+            width: 500px;
+        }
+        .landing-page-inner .hub-connect {
+            font-size: 98px;
+        }
+    }
+    @media (max-width: 739px) {
+        .landing-page-inner .why-talent-parent {
+            width: 261px;
+        }
+        .landing-page-inner .hub-connect {
+            font-size: 50px;
+        }
+    }
+
+    @media (max-width: 482px) {
+        .landing-page-inner .why-talent-parent {
+            width: 137px;
+        }
+        .landing-page-inner .hub-connect {
+            font-size: 50px;
+        }
+    }
+
+    @media (max-width: 380px) {
+        .frame-section .frame-parent2 .frame-parent3 .rectangle-icon {
+            height: 280px;
+        }
+        .profile-3-parent {
+            margin-left: -37px;
+        }
+
+        .profile-parent {
+            margin-left: -17px;
+        }
+    }
+    @media (max-width: 420px) {
+        .frame-section .frame-parent2 .frame-parent3 .rectangle-icon {
+            height: 311px;
+        }
+    }
+
+    @media (max-width: 435px) {
+        .frame-section .frame-parent2 .frame-parent3 .rectangle-icon {
+            height: 320px;
+        }
+
+        .profile-3-parent {
+            margin-left: -32px;
+        }
+        .profile-parent {
+            margin-left: -17px;
+        }
+    }
+    .videos-btn {
+        display: none;
+    }
+
+    .bxsup-arrow-icon {
+        display: none;
+    }
+
+    .bxsup-arrow-parent .art {
+        display: none;
+    }
+    .frame-parent .rectangle-group {
+        display: none;
+    }
+}
+
 .frame-inner,
 .landing-page-child {
     position: absolute;
@@ -635,7 +730,6 @@ body {
     font-size: inherit;
     font-weight: 500;
     font-family: inherit;
-    white-space: pre-wrap;
 }
 .talent-hubs-connect-you-with-a-wrapper {
     width: 544px;

@@ -31,14 +31,14 @@ class AuthController extends Controller
         return ['users' => $users];
     }
 
-      public function loginForm()
+    public function loginForm()
     {
 
 
         return view('authentication.authentication-signin');
     }
 
-     public function register()
+    public function register()
     {
 
 
@@ -62,9 +62,9 @@ class AuthController extends Controller
         );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
-            return redirect()->back()->withInput()->with(['status'=>'danger','message'=>$validator->errors()->first()]);
+            return redirect()->back()->withInput()->with(['status' => 'danger', 'message' => $validator->errors()->first()]);
         }
-        try{
+        try {
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
@@ -72,9 +72,9 @@ class AuthController extends Controller
             $user->password = Hash::make($request->password);
             $user->phone_no = $request->phone_no;
             $user->save();
-            return redirect('/')->with(['status'=>'success','message'=>'Your account has been created successfully']);
-        }catch(Exception $e){
-            return back()->withInput()->with(['status'=>'danger','message'=>$e->getMessage()]);
+            return redirect('/')->with(['status' => 'success', 'message' => 'Your account has been created successfully']);
+        } catch (Exception $e) {
+            return back()->withInput()->with(['status' => 'danger', 'message' => $e->getMessage()]);
         }
     }
 
@@ -91,7 +91,7 @@ class AuthController extends Controller
         );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
-            return redirect()->back()->withInput()->with(['status'=>'danger','message'=>$validator->errors()->first()]);
+            return redirect()->back()->withInput()->with(['status' => 'danger', 'message' => $validator->errors()->first()]);
         }
 
         $credentials = $request->validate([
@@ -110,10 +110,10 @@ class AuthController extends Controller
 
 
 
-           return redirect()->route('admin-dashboard')->with(['status'=>'success','message'=>'Welcome..! '.$user->name]);
+            return redirect()->route('admin-dashboard')->with(['status' => 'success', 'message' => 'Welcome..! ' . $user->name]);
         }
 
-            return redirect()->back()->with(['status'=>'danger','message'=>'Wrong Credentials']);
+        return redirect()->back()->with(['status' => 'danger', 'message' => 'Wrong Credentials']);
 
     }
 
@@ -121,6 +121,6 @@ class AuthController extends Controller
     public function logout()
     {
         session()->flush();
-        return redirect()->to('/');
+        return redirect()->to('/login');
     }
 }
