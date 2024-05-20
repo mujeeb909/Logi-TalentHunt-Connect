@@ -41,148 +41,97 @@
                 <hr />
                 <br>
                 <div class="row row-cols-1 row-cols-lg-3 monthly-plans">
-                    <!-- Free Tier -->
+
                     @foreach ($plansMonthly as $index => $planMonthly)
                         <div class="col">
-
-                            <div class="card mb-5 mb-lg-0 bg-info"
-                                style="{{ $planMonthly->name == $currentPlan->name ? 'margin-top: -20px; margin-bottom: 20px; height: 600px;' : 'margin-bottom: 20px; width:500px' }}">
-                                <div class="card-body"
-                                    style="{{ $planMonthly->name == $currentPlan->name ? 'background-color:#0092CD; border-radius:15px; color:white' : 'background-color:#F9F9F9; border-radius:15px' }}">
-                                    <h5 class="card-title grey-text text-uppercase text-center"
-                                        style="{{ $planMonthly->name == $currentPlan->name ? 'color:white' : '' }}">
-                                        {{ $planMonthly->name }}
+                            <div class="card mb-5 mb-lg-0 {{ $planMonthly->name == $currentPlan->name ? 'bg-info' : '' }}">
+                                <div class="card-body">
+                                    <h5 class="card-title grey-text text-uppercase text-center">{{ $planMonthly->name }}
                                     </h5>
-                                    <h6 class="card-price text-center"
-                                        style="{{ $planMonthly->name == $currentPlan->name ? 'color:white' : '' }}">
-                                        ${{ $planMonthly->amount }}<span class="term">/month</span></h6>
+                                    <h6 class="card-price text-center">${{ $planMonthly->amount }}<span
+                                            class="term">/month</span></h6>
                                     <hr class="my-4">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item bg-transparent"
-                                            style="{{ $planMonthly->name == $currentPlan->name ? 'color:white' : '' }}">
-                                            Single User</li>
-                                        <li class="list-group-item bg-transparent"
-                                            style="{{ $planMonthly->name == $currentPlan->name ? 'color:white' : '' }}">5GB
+                                        <li class="list-group-item bg-transparent">Single
+                                            User</li>
+                                        <li class="list-group-item bg-transparent">5GB
                                             Storage</li>
-                                        <li
-                                            class="list-group-item bg-transparent"style="{{ $planMonthly->name == $currentPlan->name ? 'color:white' : '' }}">
-                                            Unlimited Public Projects</li>
-                                        <li
-                                            class="list-group-item bg-transparent"style="{{ $planMonthly->name == $currentPlan->name ? 'color:white' : '' }}">
-                                            Community Access</li>
-                                        <li
-                                            class="list-group-item bg-transparent"style="{{ $planMonthly->name == $currentPlan->name ? 'color:white' : '' }}">
-                                            Unlimited
+                                        <li class="list-group-item bg-transparent">Unlimited
+                                            Public Projects</li>
+                                        <li class="list-group-item bg-transparent">Community
+                                            Access</li>
+                                        <li class="list-group-item bg-transparent">Unlimited
                                             Private Projects</li>
-                                        <li class="list-group-item bg-transparent"
-                                            style="{{ $planMonthly->name == $currentPlan->name ? 'color:white' : '' }}">
-                                            Dedicated
+                                        <li class="list-group-item bg-transparent">Dedicated
                                             Phone Support</li>
-                                        <li class="list-group-item bg-transparent"
-                                            style="{{ $planMonthly->name == $currentPlan->name ? 'color:white' : '' }}">
-                                            Free
+                                        <li class="list-group-item bg-transparent">Free
                                             Subdomain</li>
-                                        <li
-                                            class="list-group-item bg-transparent"style="{{ $planMonthly->name == $currentPlan->name ? 'color:white' : '' }}">
-                                            Monthly
+                                        <li class="list-group-item bg-transparent">Monthly
                                             Status Reports</li>
                                     </ul>
-                                    <div class="d-grid"> <a href="#" class="btn my-2 radius-30 text-center"
-                                            style="{{ $planMonthly->name != $currentPlan->name
-                                                ? 'width: 271px;height: 55px;margin: 0 auto; border-radius: 24px;border: 1px;background-color:#0092CD;color:white;font-size:20px; font-weight:500;display: flex;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        justify-content: center; align-items: center;'
-                                                : 'width: 271px;height: 55px;margin: 0 auto;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    border-radius: 24px; border: 1px;background-color:white;color:black;font-size:20px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-weight:500;display: flex;justify-content: center;align-items: center;' }}">{{ $planMonthly->name != $currentPlan->name ? 'Upgrade Now' : 'Current Plan' }}</a>
+                                    <div class="d-grid"> <a href="#"
+                                            class="btn {{ $planMonthly->name == $currentPlan->name ? 'btn-white' : 'bg-info text-white' }} my-2 radius-30">{{ $planMonthly->name == $currentPlan->name
+                                                ? 'Current Plan'
+                                                : 'Upgrade
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Now' }}</a>
                                     </div>
-
-
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     @endforeach
                 </div>
 
                 <div class="row row-cols-1 row-cols-lg-3 yearly-plans" style="display: none;">
-                    <!-- Free Tier -->
                     @foreach ($plansYearly as $index => $planYearly)
                         <div class="col">
-
-                            <div class="card mb-5 mb-lg-0 bg-info"
-                                style="{{ $planYearly->amount == $currentPlan->amount ? 'margin-top: -20px; margin-bottom: 20px; height: 600px;' : 'margin-bottom: 20px; width:500px' }}">
-                                <div class="card-body"
-                                    style="{{ $planYearly->amount == $currentPlan->amount ? 'background-color:#0092CD; border-radius:15px;color:white' : 'background-color:#F9F9F9; border-radius:15px' }}">
-                                    <h5 class="card-title grey-text
-                                    text-uppercase text-center"
-                                        </h5>
-                                        <h6 class="card-price text-center"
-                                            style="{{ $planYearly->name == $currentPlan->name && $planYearly->amount == $currentPlan->amount ? 'color:white' : '' }}">
-                                            ${{ $planYearly->amount }}<span class="term">/Year</span></h6>
-                                        <hr class="my-4"
-                                            style="{{ $planYearly->amount == $currentPlan->amount ? 'color:white' : '' }}">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item bg-transparent"
-                                                style="{{ $planYearly->amount == $currentPlan->amount ? 'color:white' : '' }}">
-                                                Single User</li>
-                                            <li class="list-group-item bg-transparent"
-                                                style="{{ $planYearly->amount == $currentPlan->amount ? 'color:white' : '' }}">
-                                                5GB
-                                                Storage</li>
-                                            <li class="list-group-item bg-transparent"
-                                                style="{{ $planYearly->amount == $currentPlan->amount ? 'color:white' : '' }}">
-                                                Unlimited Public Projects</li>
-                                            <li class="list-group-item bg-transparent"
-                                                style="{{ $planYearly->amount == $currentPlan->amount ? 'color:white' : '' }}">
-                                                Community Access</li>
-                                            <li class="list-group-item bg-transparent"
-                                                style="{{ $planYearly->amount == $currentPlan->amount ? 'color:white' : '' }}">
-                                                Unlimited
-                                                Private Projects</li>
-                                            <li class="list-group-item bg-transparent"
-                                                style="{{ $planYearly->amount == $currentPlan->amount ? 'color:white' : '' }}">
-                                                Dedicated
-                                                Phone Support</li>
-                                            <li class="list-group-item bg-transparent"
-                                                style="{{ $planYearly->amount == $currentPlan->amount ? 'color:white' : '' }}">
-                                                Free
-                                                Subdomain</li>
-                                            <li class="list-group-item bg-transparent"
-                                                style="{{ $planYearly->amount == $currentPlan->amount ? 'color:white' : '' }}">
-                                                Monthly
-                                                Status Reports</li>
-                                        </ul>
-
-                                        <div class="d-grid"> <a href="#" class="btn my-2 radius-30 text-center"
-                                                style="{{ $planYearly->amount != $currentPlan->amount
-                                                    ? 'width: 271px;height: 55px;margin: 0 auto; border-radius: 24px;border: 1px;background-color:#0092CD;color:white;font-size:20px; font-weight:500;display: flex;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        justify-content: center; align-items: center;'
-                                                    : 'width: 271px;height: 55px;margin: 0 auto;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    border-radius: 24px; border: 1px;background-color:white;color:black;font-size:20px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-weight:500;display: flex;justify-content: center;align-items: center;' }}">{{ $planYearly->amount != $currentPlan->amount ? 'Upgrade Now' : 'Current Plan' }}</a>
-                                        </div>
+                            <div
+                                class="card mb-5 mb-lg-0 {{ $planYearly->amount == $currentPlan->amount ? 'bg-info' : '' }}">
+                                <div class="card-body">
+                                    <h5 class="card-title grey-text text-uppercase text-center">{{ $planYearly->name }}</h5>
+                                    <h6 class="card-price text-center">${{ $planYearly->amount }}<span
+                                            class="term">/Year</span></h6>
+                                    <hr class="my-4">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item bg-transparent">Single
+                                            User</li>
+                                        <li class="list-group-item bg-transparent">5GB
+                                            Storage</li>
+                                        <li class="list-group-item bg-transparent">Unlimited
+                                            Public Projects</li>
+                                        <li class="list-group-item bg-transparent">Community
+                                            Access</li>
+                                        <li class="list-group-item bg-transparent">Unlimited
+                                            Private Projects</li>
+                                        <li class="list-group-item bg-transparent">Dedicated
+                                            Phone Support</li>
+                                        <li class="list-group-item bg-transparent">Free
+                                            Subdomain</li>
+                                        <li class="list-group-item bg-transparent">Monthly
+                                            Status Reports</li>
+                                    </ul>
+                                    <div class="d-grid"> <a href="#"
+                                            class="btn my-2 radius-30 {{ $planYearly->amount == $currentPlan->amount ? 'btn-white' : 'btn-info text-white' }}">
+                                            {{ $planYearly->amount == $currentPlan->amount ? 'Current Plan' : 'Upgrade Now' }}</a>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     @endforeach
+
                 </div>
 
             </div>
 
-            <div class="page-breadcrumb d-none d-sm-flex align-items-center mt-3">
-                <div class="breadcrumb-tt pe-3">
-                    <h1>Subscription History</h1>
-                </div>
 
+
+            <div class="breadcrumb-tt pt-3">
+                <h1>Subscription History</h1>
             </div>
-            <div class="col-12 text-center mt-4"
-                style="display:flex; justify-content:center;border:1px solid #F9F9F9;border-radius:30px; margin-bottom:40px ">
+
+
+            <div class="table-responsive">
                 <table class="table"
-                    style="width:100%;backgroud-color:#F9F9F9; margin-bottom:30px margin-left:120px; font-size:18px">
+                    style="border:1px solid #F9F9F9;border-radius:30px; width:99%;backgroud-color:#f6f6f6">
                     <thead>
                         <tr style="
                         border-bottom: 3px solid #0000002b;">
@@ -194,11 +143,9 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         @if ($planHistory->count() != 0)
                             @foreach ($planHistory as $ph)
                                 <tr>
-
                                     <td>{{ $ph->plan->name }}</td>
                                     <td>{{ $ph->plan->duration }}</td>
                                     <td>{{ $ph->start_date }}</td>
@@ -212,13 +159,9 @@
                         @else
                             <p>No Subscription History</p>
                         @endif
-
-
-
-
                     </tbody>
-                </table>
 
+                </table>
             </div>
 
         </div>
@@ -257,63 +200,5 @@
 
 
 
-
-
-
-
-    <!-- Add this at the end of your HTML, before the closing </body> tag -->
-    <!-- Add this in your head section -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Add this at the end of your HTML, before the closing </body> tag -->
-    <script>
-        $(document).ready(function() {
-            var delayTimer;
-            fetchAllProducts();
-            // Add an event listener to the search input
-            $('#name').on('input', function() {
-                clearTimeout(delayTimer);
-
-                var inputValue = $(this).val();
-
-                // Search only if the string is at least 3 characters long
-                if (inputValue.length >= 3) {
-                    // Set a delay before triggering the search
-                    delayTimer = setTimeout(function() {
-                        searchProducts(inputValue);
-                    }, 500); // Adjust the delay as needed
-                } else {
-                    fetchAllProducts()
-                }
-            });
-
-            // Function to search products and update the table
-            function searchProducts(searchValue) {
-                $.ajax({
-                    url: '{{ route('searchProducts') }}', // Replace with your Laravel route
-                    method: 'GET',
-                    data: {
-                        search: searchValue
-                    },
-                    success: function(data) {
-                        // Update the table with the filtered results
-
-                        $("#ajaxData").html(data);
-                    }
-                });
-            }
-
-            // Function to fetch all products
-            function fetchAllProducts() {
-                $.ajax({
-                    url: '{{ route('searchProducts') }}', // Replace with your Laravel route
-                    method: 'GET',
-                    success: function(data) {
-                        // Update the table with all products
-                        $("#ajaxData").html(data);
-                    }
-                });
-            }
-        });
-    </script>
 @endsection

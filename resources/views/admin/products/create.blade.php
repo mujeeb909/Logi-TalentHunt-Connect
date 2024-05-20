@@ -1,98 +1,33 @@
 @extends('layouts.app')
 @section('style')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 @endsection
 @section('wrapper')
     <!--start page wrapper -->
     <div class="page-wrapper">
         <div class="page-content">
-            <!--breadcrumb-->
-            {{-- <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Products</div>
-                <div class="ps-3">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0 p-0">
-                            <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Show Products</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <!--end breadcrumb-->
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-
-                        <div id='alertContainer'>
+            <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Contact Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-
-
-                        <div class="card-body">
-                            <div class="card">
-                                <div class="card-header input-title">
-                                    <h4>{{ __('Add New Products') }}</h4>
-                                </div>
-                                <div class="card-body card-body-paddding">
-                                    <form id="productForm" data-route="{{ route('saveProducts') }}">
-                                        @csrf
-                                        <div class="border border-3 p-4 rounded borderRmv">
-
-                                            <div class="mb-3">
-                                                <label for="name" class="form-label">Name</label>
-                                                <input type="text" name="product_name" required class="form-control"
-                                                    id="product_name" placeholder="Enter Product Name">
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="price" class="form-label">Price</label>
-                                                <input type="text" class="form-control" name='price' id="price"
-                                                    placeholder="Enter Price" required>
-
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="category" class="form-label">Category</label>
-                                                <select class="form-control selectric lang" name="category" required>
-                                                    <option value="">{{ __('Select Root Category') }}</option>
-                                                    @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}"
-                                                            {{ $category->id == old('category') ? 'selected' : '' }}>
-                                                            {{ str_repeat('- ', $category->depth) }}{{ $category->name }}
-                                                        </option>
-                                                        @if ($category->children->isNotEmpty())
-                                                            @include(
-                                                                'admin.categories.partials.subcategories',
-                                                                ['categories' => $category->children]
-                                                            )
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-
-
-
-                                            <div class="mb-3">
-                                                <div class="d-grid">
-                                                    <button id="productSave" class="btn btn-info">Save</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-
-
-                            </div><!--end row-->
-                            </form>
+                        <div class="modal-body">
+                            <p><strong>Name:</strong> <span id="modal-name"></span></p>
+                            <p><strong>Email:</strong> <span id="modal-email"></span></p>
+                            <p><strong>Phone Number:</strong> <span id="modal-phone_no"></span></p>
+                            <p><strong>State:</strong> <span id="modal-address"></span></p>
+                            <p><strong>Note:</strong> <span id="modal-message"></span></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
-
                 </div>
-            </div> --}}
-
-
+            </div>
 
 
             <div class="row">
@@ -156,12 +91,14 @@
                                                 <tbody>
                                                     @if ($enquiries->count() != 0)
                                                         @foreach ($enquiries as $enquirie)
-                                                            <tr>
-                                                                <th scope="row"><input type="checkbox" id="select"
+                                                            <tr class="data-row" data-name="{{ $enquirie->name }}"
+                                                                data-email="{{ $enquirie->email }}"
+                                                                data-phone_no="{{ $enquirie->phone_no }}"
+                                                                data-address="{{ $enquirie->address }}"
+                                                                data-message="{{ $enquirie->message }}">
+                                                                <th scope="row"><input type="checkbox"
                                                                         class="select-checkbox" name="select"
-                                                                        value="{{ $enquirie->id }}">
-                                                                </th>
-                                                                </th>
+                                                                        value="{{ $enquirie->id }}"></th>
                                                                 <td>{{ $enquirie->name }}</td>
                                                                 <td>{{ $enquirie->email }}</td>
                                                                 <td>{{ $enquirie->phone_no }}</td>
@@ -174,9 +111,8 @@
                                                             <td colspan="6">No Contacts found</td>
                                                         </tr>
                                                     @endif
-
-
                                                 </tbody>
+
                                             </table>
                                         </div>
                                     </div>
@@ -203,16 +139,37 @@
 @endsection
 
 @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/plugins/smart-wizard/js/jquery.smartWizard.min.js"></script>
     <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
     <script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
     <script>
+        $(document).ready(function() {
+            // Handle row click
+            $('.data-row').on('click', function() {
+                // Get data attributes
+                var name = $(this).data('name');
+                var email = $(this).data('email');
+                var phone_no = $(this).data('phone_no');
+                var address = $(this).data('address');
+                var message = $(this).data('message');
+
+                // Populate modal
+                $('#modal-name').text(name);
+                $('#modal-email').text(email);
+                $('#modal-phone_no').text(phone_no);
+                $('#modal-address').text(address);
+                $('#modal-message').text(message);
+
+                // Show modal
+                $('#exampleVerticallycenteredModal').modal('show');
+            });
+        });
+
         function deleteSelectedRows() {
 
             const checkboxes = document.querySelectorAll('.select-checkbox:checked');
@@ -269,14 +226,13 @@
 
         const selectAllCheckbox = document.getElementById('select-all');
 
-        // Get all checkboxes in the table body
+
         const checkboxes = document.querySelectorAll('#select');
 
-        // Add event listener to "select all" checkbox
+
         selectAllCheckbox.addEventListener('change', function() {
-            // Loop through all checkboxes
             checkboxes.forEach(function(checkbox) {
-                // Set checked property of each checkbox to match "select all" checkbox
+
                 checkbox.checked = selectAllCheckbox.checked;
             });
         });
