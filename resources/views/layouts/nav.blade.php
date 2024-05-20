@@ -20,13 +20,7 @@
         <ul class="metismenu" id="menu">
 
             <div>
-
-
-
                 <div class="top-sidebar-menu">
-
-
-
                     <li>
                         <a href="{{ url('dashboard') }}">
                             <div class="parent-icon"><i class='bx bxs-dashboard'></i>
@@ -34,15 +28,6 @@
                             <div class="menu-title">Dashboard</div>
                         </a>
                     </li>
-
-
-
-
-
-                    {{-- <li class="menu-label"></li> --}}
-
-                    {{-- -------------------------------------------Admin Routes----------------------------------------------------- --}}
-
                     <li>
                         <a href="{{ url('profile-page') }}">
                             <div class="parent-icon"><i class='bx bxs-user'></i>
@@ -50,7 +35,6 @@
                             <div class="menu-title">Profile Page</div>
                         </a>
                     </li>
-
                     <li>
                         <a href="{{ url('contacts') }}">
                             <div class="parent-icon"><i class='bx bxs-contact'></i>

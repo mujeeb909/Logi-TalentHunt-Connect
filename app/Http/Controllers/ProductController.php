@@ -86,25 +86,24 @@ class ProductController extends Controller
         $id = Session::get('user_id');
         $enquiries = Enquiries::where('user_id', $id);
 
-        // Check if sorting order is specified
+
         if ($request->has('sortOrder')) {
             $sortOrder = $request->input('sortOrder');
 
-            // Apply sorting based on the specified order
+
             if ($sortOrder == 'asc') {
                 $enquiries->orderBy('created_at', 'asc');
             } else {
                 $enquiries->orderBy('created_at', 'desc');
             }
         } else {
-            // Default sorting if no sorting order is specified
+
             $enquiries->orderBy('created_at', 'desc');
         }
 
-        // Check if search query is present
         if ($request->has('search')) {
             $search = $request->input('search');
-            // Perform search on relevant columns
+
             $enquiries->where(function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%')
                     ->orWhere('email', 'like', '%' . $search . '%')
@@ -112,7 +111,6 @@ class ProductController extends Controller
             });
         }
 
-        // Fetch sorted and filtered data
         $enquiries = $enquiries->get();
 
         return view('admin.products.create', compact('enquiries'));

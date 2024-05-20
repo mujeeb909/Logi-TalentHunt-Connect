@@ -215,6 +215,15 @@ body {
         .frame-section .frame-parent2 .frame-parent3 .rectangle-icon {
             height: 311px;
         }
+        .frame-parent9
+            .frame-parent10
+            .frame-parent11
+            .frame-wrapper8
+            .rectangle-parent9
+            .profile-parent
+            .profile-icon {
+            margin-left: -43px;
+        }
     }
 
     @media (max-width: 435px) {
@@ -242,6 +251,43 @@ body {
     }
     .frame-parent .rectangle-group {
         display: none;
+    }
+    .frame-parent14 .frame-parent15 .manage-parent {
+        left: 120px;
+    }
+}
+
+@media (max-width: 380px) {
+    .landing-page-inner6
+        .frame-parent20
+        .frame-wrapper16
+        .frame-parent21
+        .monthly-wrapper
+        .monthly {
+        margin-left: -16px;
+    }
+
+    .landing-page-inner6
+        .frame-parent20
+        .frame-wrapper16
+        .frame-parent21
+        .annually-wrapper
+        .annually {
+        margin-left: -16px;
+    }
+
+    .frame-parent14 .frame-parent15 .manage-parent {
+        left: 163px;
+    }
+    .frame-parent9
+        .frame-wrapper12
+        .frame-parent16
+        .contact-manager-unread-parent
+        .ellipse-parent1
+        .frame-child23
+        .contact-manager-icon {
+        width: 305px !important;
+        height: 216px !important;
     }
 }
 
@@ -628,7 +674,6 @@ body {
     box-shadow: 40px 20px 4px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20.4px);
     background-color: #1c1c1c;
-    border-top: 1px solid #4d0ba1;
     border-right: 1px solid #4d0ba1;
     border-left: 1px solid #4d0ba1;
     box-sizing: border-box;
@@ -1497,7 +1542,7 @@ body {
     max-width: 100%;
 }
 .profile-3-icon1 {
-    position: absolute;
+    /* position: absolute; */
     height: 100%;
     top: 0;
     bottom: 0;
@@ -2250,6 +2295,39 @@ body {
     overflow: hidden;
     object-fit: cover;
     z-index: 1;
+}
+
+@media (max-width: 390px) {
+    .frame-parent9
+        .frame-parent10
+        .frame-parent11
+        .frame-wrapper7
+        .rectangle-parent8
+        .profile-3-parent
+        .profile-3-icon {
+        margin-left: -41px !important;
+    }
+    .frame-parent9
+        .frame-parent10
+        .frame-parent11
+        .frame-wrapper8
+        .rectangle-parent9
+        .profile-parent
+        .profile-icon {
+        margin-left: -74px !important;
+    }
+
+    .frame-parent9
+        .frame-parent10
+        .frame-parent11
+        .ellipse-container
+        .frame-child18
+        .rectangle-parent12
+        .frame-child19
+        .profile-3-group
+        .profile-3-icon1 {
+        margin-left: -58px !important;
+    }
 }
 .ellipse-parent3 {
     width: 275px;
@@ -3176,7 +3254,7 @@ body {
     position: absolute;
     margin: 0 !important;
     top: 44px;
-    left: -66px;
+    left: -45px;
     font-weight: 500;
     display: inline-block;
     min-width: 92px;
@@ -3777,6 +3855,7 @@ body {
     }
     .pricings {
         font-size: 52px;
+        padding: 78px;
     }
     .annually-wrapper,
     .monthly-wrapper {

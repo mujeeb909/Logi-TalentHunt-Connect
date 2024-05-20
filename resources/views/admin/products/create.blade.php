@@ -2,24 +2,6 @@
 @section('style')
     <link href="assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <style>
-        .table thead th {
-            border-bottom: 2px solid rgba(0, 0, 0, 0.45);
-
-        }
-
-        .table tbody tr:hover {
-            background-color: #f0f0f0;
-            cursor: pointer;
-        }
-
-        .modal-body strong {
-            font-weight: 400;
-            /* Adjust the font weight to make it slightly bolder */
-            color: #333;
-            /* Change the color to your desired color */
-        }
-    </style>
 @endsection
 @section('wrapper')
     <!--start page wrapper -->
@@ -110,21 +92,7 @@
                 </div>
             </div> --}}
 
-            <div class="modal fade" id="rowDataModal" style="backgroud-color:#F9F9F9; border-radius:30px;" tabindex="-1"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl"> <!-- Adjust modal-xl for extra-large modal -->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Contact Info</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Modal body to display row data -->
-                            <div id="rowData" style="font-size:20px; font-weight:300"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
 
             <div class="row">
@@ -166,13 +134,14 @@
                                                 style="background-color: #FF0000; font-size:21px; border-radius:25px; width:150px"
                                                 onclick="deleteSelectedRows()"><i class="fa fa-trash mr-4"
                                                     aria-hidden="true"></i>Delete</button>
+
                                         </div>
 
                                     </div>
-                                    <div class="row p-2">
-                                        <div class="col-12">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
                                             <table class="table"
-                                                style="border:1px solid #F9F9F9;border-radius:30px; width:99%;backgroud-color:#F9F9F9">
+                                                style="border:1px solid #F9F9F9;border-radius:30px; width:99%;backgroud-color:#f6f6f6">
                                                 <thead>
                                                     <tr>
                                                         <th><input type="checkbox" id="select-all" name="select-all"
@@ -209,12 +178,16 @@
 
                                                 </tbody>
                                             </table>
-
                                         </div>
                                     </div>
 
                                 </div>
+
+
+
                             </div>
+
+
 
                             <!-- Modal for adding a new supplier -->
 
@@ -223,7 +196,6 @@
                     </div>
                 </div>
             </div>
-
 
         </div>
     </div>
@@ -234,80 +206,64 @@
     <script src="assets/plugins/smart-wizard/js/jquery.smartWizard.min.js"></script>
     <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
     <script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const rows = document.querySelectorAll('.table tbody tr');
-
-            rows.forEach(function(row) {
-                row.addEventListener('click', function(event) {
-                    // Check if the clicked element is a checkbox
-                    if (event.target.type === 'checkbox') {
-                        return;
-                    }
-
-                    const rowData = Array.from(row.children).map(function(cell, index) {
-                        const columnName = document.querySelector(
-                                '.table thead th:nth-child(' + (index + 1) + ')').innerText
-                            .trim();
-                        const cellValue = cell.textContent.trim();
-                        // Exclude the colon if the columnName is empty
-                        return columnName ? `${columnName}: <strong>${cellValue}</strong>` :
-                            cellValue;
-                    }).join('<br>');
-
-                    document.getElementById('rowData').innerHTML = rowData;
-                    $('#rowDataModal').modal('show');
-                });
-            });
-        });
-    </script>
-
 
     <script>
         function deleteSelectedRows() {
-            // Get all checkboxes with class 'select-checkbox'
+
             const checkboxes = document.querySelectorAll('.select-checkbox:checked');
+            const selectedIds = [];
 
-            // Confirm if the user wants to delete selected rows
-            if (confirm("Are you sure you want to delete selected rows?")) {
-                // Array to store the IDs of selected rows
-                const selectedIds = [];
+            checkboxes.forEach(function(checkbox) {
 
-                // Loop through each selected checkbox
-                checkboxes.forEach(function(checkbox) {
-                    // Push the value (ID) of the checkbox into the array
-                    selectedIds.push(checkbox.value);
+                selectedIds.push(checkbox.value);
+            });
+            if (selectedIds == 0) {
+                swal("Please select at least one row to delete!", {
+                    icon: "error",
                 });
+                return false;
+            }
 
-                // Log the selected IDs to the console
-                console.log(selectedIds);
-                if (selectedIds == 0) {
-                    alert("Please select at least one row to delete");
-                    return false;
-                }
-                $.ajax({
-                    url: "{{ route('deleteSelectedRows') }}",
-                    method: 'POST',
-                    data: {
-                        ids: selectedIds,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        // Handle success response
-                        console.log(response);
+            swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover contact info!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: "{{ route('deleteSelectedRows') }}",
+                            method: 'POST',
+                            data: {
+                                ids: selectedIds,
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function(response) {
 
-                        location.reload();
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle error
-                        console.error(error);
+                                swal("Poof! Info has been deleted!", {
+                                    icon: "success",
+                                });
+
+                                location.reload();
+                            },
+                            error: function(xhr, status, error) {
+                                swal("Error Occured!", {
+                                    icon: "error",
+                                });
+                                console.error(error);
+                            }
+                        });
+
                     }
                 });
-            }
+
         }
 
 
