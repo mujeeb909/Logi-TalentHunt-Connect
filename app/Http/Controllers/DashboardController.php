@@ -18,6 +18,11 @@ class DashboardController extends Controller
         return view('index', compact('totalProducts', 'totalCategoryies'));
     }
 
+    public function purchasePlan()
+    {
+        return view('user-plan');
+    }
+
     public function exportUsers()
     {
         return Excel::download(new UsersExport, 'users.xlsx');

@@ -73,7 +73,7 @@
                                             class="btn {{ $planMonthly->name == $currentPlan->name ? 'btn-white' : 'bg-info text-white' }} my-2 radius-30">{{ $planMonthly->name == $currentPlan->name
                                                 ? 'Current Plan'
                                                 : 'Upgrade
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Now' }}</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Now' }}</a>
                                     </div>
                                 </div>
                             </div>

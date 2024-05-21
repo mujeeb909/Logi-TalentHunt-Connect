@@ -16,6 +16,8 @@ use App\Mail\sendMail;
 use Mail;
 
 
+
+
 class AuthController extends Controller
 {
 
@@ -41,8 +43,38 @@ class AuthController extends Controller
     public function register()
     {
 
-
         return view('authentication.authentication-signup');
+    }
+
+    public function verifyAccount()
+    {
+        return view('authentication.authentication-otp');
+    }
+
+    public function verifyOTPAccount(Request $request)
+    {
+        $userId = $request->query('user_id');
+        $user = User::find($userId);
+
+        if ($user) {
+            // Generate a new OTP
+            $number = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
+            $user->otp_code = $number;
+            $user->save();
+
+            return redirect('verify-account')->with([
+                'status' => 'success',
+                'message' => 'A new verification code has been sent to your email.',
+                'userId' => $userId
+            ]);
+
+        } else {
+            return redirect()->back()->with([
+                'status' => 'danger',
+                'message' => 'User not found.'
+            ]);
+        }
+
     }
 
     /**
@@ -68,22 +100,48 @@ class AuthController extends Controller
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->role_id = 1;
+            $user->role_id = 2;
             $user->password = Hash::make($request->password);
             $user->phone_no = $request->phone_no;
+            $number = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
+            $user->otp_code = $number;
             $user->save();
-            return redirect('/')->with(['status' => 'success', 'message' => 'Your account has been created successfully']);
+
+            $userData = User::where('id', $user->id)->first();
+            $userId = $userData->id;
+
+            return redirect('verify-account')->with(['status' => 'success', 'message' => 'Please Check your email inbox for account verification', 'userId' => $userId]);
+            // return redirect('login')->with(['status' => 'success', 'message' => 'Your account has been created successfully, Please Login']);
         } catch (Exception $e) {
             return back()->withInput()->with(['status' => 'danger', 'message' => $e->getMessage()]);
         }
     }
 
 
-    public function adminlogin(Request $request)
+    public function accountVerification(Request $request)
     {
 
 
+        $otpArray = $request->input('otp');
+        $otp = implode('', $otpArray);
+        $userId = $request->input('user_id');
 
+        $user = User::findOrFail($userId);
+
+        if ($otp === $user->otp_code) {
+            $user->email_verified_date = Carbon::now();
+            $user->save();
+            return redirect('login')->with(['status' => 'success', 'message' => 'Your account has been verified, Please Login']);
+
+        } else {
+            return redirect()->back()->withInput()->with(['status' => 'danger', 'message' => "Invalid Otp"]);
+        }
+    }
+
+
+
+    public function adminlogin(Request $request)
+    {
 
         $rules = array(
             'email' => 'required|email',
@@ -103,14 +161,25 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
 
+
+
             $user = User::where('email', $request->email)->with('role')->first();
-            Session::put('user_id', $user->id);
-            Session::put('role_id', $user->role_id);
-            Session::put('name', $user->name);
+            if ($user->email_verified_date === null) {
+                return redirect()->back()->withInput()->with(['status' => 'danger', 'message' => 'Please verify your account']);
+            }
 
+            if ($user->subscription_status === 0 || $user->subscription_status === null) {
+                Session::put('user_id', $user->id);
+                Session::put('role_id', $user->role_id);
+                Session::put('name', $user->name);
+                return redirect()->route('purchase-plan')->with(['status' => 'success', 'message' => 'Please purchase one of our plans to continue to the dashboard..! ']);
+            } else {
+                Session::put('user_id', $user->id);
+                Session::put('role_id', $user->role_id);
+                Session::put('name', $user->name);
+                return redirect()->route('admin-dashboard')->with(['status' => 'success', 'message' => 'Welcome..! ' . $user->name]);
+            }
 
-
-            return redirect()->route('admin-dashboard')->with(['status' => 'success', 'message' => 'Welcome..! ' . $user->name]);
         }
 
         return redirect()->back()->with(['status' => 'danger', 'message' => 'Wrong Credentials']);

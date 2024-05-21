@@ -20,7 +20,7 @@ class Admin
         $role_id = Session::get('role_id');
         if ($role_id != 1 && $role_id != 2) {
 
-            return redirect('/');
+            return redirect('login');
 
         }
         return $next($request);

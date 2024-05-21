@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HubspotApiController;
@@ -49,14 +50,17 @@ Route::get('/', function () {
 Route::middleware([AlreadyLoggedIn::class])->group(function () {
 
 
-    Route::get('/authentication-signup', function () {
-        return view('authentication.authentication-signup');
-    });
+    // Route::get('/authentication-signup', function () {
+    //     return view('authentication.authentication-signup');
+    // });
 
 
     Route::post('register', [AuthController::class, 'store']);
 
     Route::get('login', [AuthController::class, 'loginForm'])->name('login');
+    Route::get('verify-account', [AuthController::class, 'verifyAccount'])->name('verify-account');
+    Route::get('resend-verify-account', [AuthController::class, 'verifyOTPAccount'])->name('resend-verify-account');
+    Route::post('verify-account', [AuthController::class, 'accountVerification'])->name('verify-account');
     Route::get('authentication-forgot-password', [AuthController::class, 'passwordForgotForm'])->name('authentication-forgot-password');
     Route::post('/password/forgot', [AuthController::class, 'sendResetLink'])->name('forgot.password.link');
     Route::get('/password-reset-{token}', [AuthController::class, 'showResetForm'])->name('reset.password.form');
@@ -77,6 +81,7 @@ Route::middleware([Admin::class])->group(function () {
     // Dashboard route
     Route::get('exportUsers', [DashboardController::class, 'exportUsers'])->name('exportUsers');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin-dashboard');
+    Route::get('purchase-plan', [DashboardController::class, 'purchasePlan'])->name('purchase-plan');
     // Show categories route
     Route::get('showCategories', [CategoryController::class, 'index']);
     // Store categories route (POST request)
@@ -89,6 +94,8 @@ Route::middleware([Admin::class])->group(function () {
 
     // Show products route
     Route::get('plans', [ProductController::class, 'index'])->name('plans');
+
+    Route::post('payment', [StripeController::class, 'makePayment'])->name('payment');
     // Search products route
     Route::get('products-search', [ProductController::class, 'search'])->name('searchProducts');
 
