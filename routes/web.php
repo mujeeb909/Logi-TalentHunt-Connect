@@ -96,6 +96,8 @@ Route::middleware([Admin::class])->group(function () {
     Route::get('plans', [ProductController::class, 'index'])->name('plans');
 
     Route::post('payment', [StripeController::class, 'makePayment'])->name('payment');
+    Route::get('success', [StripeController::class, 'success'])->name('success');
+    Route::get('cancel', [StripeController::class, 'cancel'])->name('cancel');
     // Search products route
     Route::get('products-search', [ProductController::class, 'search'])->name('searchProducts');
 

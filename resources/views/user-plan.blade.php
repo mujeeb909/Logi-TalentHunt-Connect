@@ -71,7 +71,7 @@
                                                 <form action="{{ route('payment') }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="amount" value="5.99">
-                                                    <input type="hidden" name="duration" value="month">
+                                                    <input type="hidden" name="duration" value="monthly">
                                                     <input type="hidden" name="plan_name" value="Basic Plan">
                                                     <button type="submit"
                                                         class="btn bg-info text-white my-2 radius-30">Purchase

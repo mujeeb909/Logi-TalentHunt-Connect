@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Plans;
+use App\Models\PlanHistory;
 use Illuminate\Http\Request;
+use App\Models\PaymentTransaction;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class StripeController extends Controller
@@ -19,14 +25,17 @@ class StripeController extends Controller
         $planDuration = $request->input('duration');
         $planAmount = $request->input('amount');
 
+        $userId = Session::get('user_id');
+
+
         $total = $planAmount * 100;
 
-        $user = User::where('email', $refEmail)->first();
-        $userId = $user->id;
+        $user = User::where('id', $userId)->first();
+
 
 
         try {
-            $customerList = \Stripe\Customer::all(['email' => $donorEmail]);
+            $customerList = \Stripe\Customer::all(['email' => $user->email]);
             $customer = $customerList->data[0] ?? null;
         } catch (\Stripe\Exception\ApiErrorException $e) {
 
@@ -35,13 +44,11 @@ class StripeController extends Controller
 
         if (!$customer) {
             try {
-                $customer = \Stripe\Customer::create(['email' => $donorEmail]);
+                $customer = \Stripe\Customer::create(['email' => $user->email]);
             } catch (\Stripe\Exception\ApiErrorException $e) {
                 return redirect()->back()->with('error', 'Failed to create new customer.');
             }
         }
-
-
 
         $session = \Stripe\Checkout\Session::create([
             'customer' => $customer->id,
@@ -51,7 +58,7 @@ class StripeController extends Controller
                     'price_data' => [
                         'currency' => 'USD',
                         'product_data' => [
-                            'name' => $name,
+                            'name' => $planName,
                         ],
                         'unit_amount' => $total,
                     ],
@@ -62,19 +69,64 @@ class StripeController extends Controller
             // Omit session_id here
             'success_url' => route('success', [
                 'user_id' => $userId,
-                'name' => $name,
-                'donorEmail' => $donorEmail,
-                'refEmail' => $refEmail,
-                'amount' => $amount,
-                'organization' => $organization,
-            ], absolute: true),
-            'cancel_url' => route('cancel', [], absolute: true),
+                'name' => $planName,
+                'duration' => $planDuration,
+                'amount' => $planAmount,
+            ]),
+            'cancel_url' => route('cancel', []),
         ]);
 
 
-
-
-        // Redirect to the Stripe Checkout page
         return redirect()->away($session->url);
+    }
+
+    public function success(Request $request)
+    {
+
+        $userId = $request->query('user_id');
+        $planName = $request->query('name');
+        $duration = $request->query('duration');
+        $amount = $request->query('amount');
+
+        $plan = Plans::where('name', $planName)
+            ->where('duration', $duration)
+            ->first();
+        $planId = $plan->id;
+
+
+        $user = User::where('id', $userId)->first();
+
+        $user->plan_id = $planId;
+        $user->subscription_status = 1;
+        $user->save();
+
+        $paymentTransaction = new PaymentTransaction();
+        $paymentTransaction->plan_id = $planId;
+        $paymentTransaction->user_id = $userId;
+        $paymentTransaction->amount = $amount;
+        $paymentTransaction->created_at = Carbon::now();
+        $paymentTransaction->updated_at = Carbon::now();
+        $paymentTransaction->save();
+
+        $planHistory = new PlanHistory();
+        $planHistory->plan_id = $planId;
+        $planHistory->user_id = $userId;
+        $planHistory->user_id = $userId;
+        $planHistory->start_date = Carbon::now();
+        $planHistory->end_date = Carbon::now()->addDays(30);
+        $planHistory->subscription_status = 1;
+        $planHistory->save();
+
+
+
+        return redirect()->route('admin-dashboard')->with(['status' => 'success', 'message' => 'Congrats you have purchased our plan   Welcome..! ']);
+    }
+
+
+
+
+    public function cancel(Request $request)
+    {
+        return redirect()->route('purchase-plan')->with(['status' => 'false', 'message' => 'Your payment is declined']);
     }
 }
