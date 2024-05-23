@@ -80,41 +80,7 @@ class ProductController extends Controller
     // }
 
 
-    public function create(Request $request)
-    {
 
-        $id = Session::get('user_id');
-        $enquiries = Enquiries::where('user_id', $id);
-
-
-        if ($request->has('sortOrder')) {
-            $sortOrder = $request->input('sortOrder');
-
-
-            if ($sortOrder == 'asc') {
-                $enquiries->orderBy('created_at', 'asc');
-            } else {
-                $enquiries->orderBy('created_at', 'desc');
-            }
-        } else {
-
-            $enquiries->orderBy('created_at', 'desc');
-        }
-
-        if ($request->has('search')) {
-            $search = $request->input('search');
-
-            $enquiries->where(function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('email', 'like', '%' . $search . '%')
-                    ->orWhere('phone_no', 'like', '%' . $search . '%');
-            });
-        }
-
-        $enquiries = $enquiries->get();
-
-        return view('admin.products.create', compact('enquiries'));
-    }
 
 
 

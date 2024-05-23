@@ -16,7 +16,7 @@
             </nav>
             <div class="frame-container ">
                 <button class="join-parent join-btn">
-                    <div class="join">Join</div>
+                    <div class="join"><a class="pricing-a" href="signup">Join</a></div>
                     <div class="frame-item"></div>
                 </button>
 
@@ -98,7 +98,7 @@
                         <div class="frame-wrapper2">
                             <button class="rectangle-parent1">
                                 <div class="frame-child6"></div>
-                                <div class="get-started">Get Started</div>
+                                <div class="get-started"><a class="pricing-a" href="signup">Get Started</a></div>
                             </button>
                         </div>
                     </div>
@@ -334,7 +334,7 @@
                             </h2>
                             <button class="rectangle-parent15">
                                 <div class="frame-child24"></div>
-                                <div class="create-profile">Create Profile</div>
+                                <div class="create-profile"><a class="pricing-a" href="login">Create Profile</a></div>
                             </button>
                         </div>
                     </div>

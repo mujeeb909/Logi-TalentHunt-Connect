@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Exports\UsersExport;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
@@ -16,6 +17,11 @@ class DashboardController extends Controller
         $totalCategoryies = Category::count();
 
         return view('index', compact('totalProducts', 'totalCategoryies'));
+    }
+
+    public function purchasePlan()
+    {
+        return view('user-plan');
     }
 
     public function exportUsers()
@@ -38,6 +44,12 @@ class DashboardController extends Controller
         return view('admin.dashboard_delete_account');
     }
 
+
+    public function showProfilePage()
+    {
+        // $user = User::where('username', $username)->first();
+        return view('public-profile');
+    }
 
 
 

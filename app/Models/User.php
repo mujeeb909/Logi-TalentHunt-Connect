@@ -28,6 +28,9 @@ class User extends Authenticatable
         'role_id',
         'plan_id',
         'phone_no',
+        'otp_code',
+        'otp_time',
+        'first_login'
     ];
     /**
      * The attributes that are mass assignable.

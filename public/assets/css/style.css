@@ -30,7 +30,7 @@ a {
         cover;
     min-height: calc(100px + 15vw);
     border-radius: 35px;
-    width: 100%;
+    width: 1087px;
     height: 373px;
 }
 
@@ -51,8 +51,8 @@ a {
     border-radius: 50%;
 }
 .header__wrapper .cols__container .left__col .img__container img {
-    width: 164px;
-    height: 157px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     border-radius: 50%;
     display: block;
@@ -186,12 +186,19 @@ a {
     font-weight: 500;
     text-decoration: none;
 }
+@media (max-width: 660px) {
+    .btn-custom {
+        margin-top: 20px;
+        font-size: 1rem !important;
+    }
+}
 .video-custom {
     background-color: #f9f9f9;
     border-radius: 24px;
-    /* display: flex;
+    display: flex;
     justify-content: space-around;
-    flex-wrap: wrap; */
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 .play-btn {
     position: absolute;
@@ -210,19 +217,19 @@ a {
 .play-btn:focus {
     outline: 0;
 }
-/* .drop{
-  Width :5px;
-height:21px;
-top:1765px;
-left:850px;
-} */
 .dropdown-custom {
-    top: -215px;
-    right: 155px;
+    top: -290px;
+    right: 20px;
+    position: absolute;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
 }
 .i-icon {
-    width: 31px;
-    height: 47px;
+    width: 24px;
+    height: 24px;
     top: 729px;
     left: 398px;
     padding: 4.5px 1px 4.5px 1px;
@@ -248,28 +255,14 @@ left:850px;
     border: 1px 0px 0px 0px;
     opacity: 0px;
     border: 1px solid rgba(0, 0, 0, 0.05);
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
-}
-
-.select-custom {
-    width: 444px;
-    height: 50px;
-    top: 873px;
-    left: 370px;
-    gap: 0px;
-    border-radius: 30px;
-    border: 1px 0px 0px 0px;
-    opacity: 0px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 .video-img {
     height: 298px;
-    width: 520px;
+    width: 33.333vw;
 }
-
+.video-item {
+    position: relative;
+}
 input[type="text"],
 input[type="email"] {
     width: 100%;
@@ -319,15 +312,12 @@ div.scrollmenu a:hover {
     background-color: #777;
 }
 textarea {
-    border-radius: 30px;
     height: 175px;
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.02);
     background-color: rgba(249, 249, 249, 1);
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
+    border: none; /* Remove the border */
+    resize: none; /* Prevent resizing */
+    outline: none;
 }
 
 /* Responsiveness */

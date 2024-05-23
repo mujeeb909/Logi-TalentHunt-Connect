@@ -9,7 +9,7 @@
     <link rel="icon" href="assets/test.png" type="image/png" />
     <!-- loader-->
     <link href="assets/css/pace.min.css" rel="stylesheet" />
-    <script src="assets/js/pace.min.js') }}"></script>
+    <script src="{{ 'assets/js/pace.min.js' }}"></script>
     <!-- Bootstrap CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -20,95 +20,116 @@
 
 
 
-<body class="bg-img-container bg-img-container-register" >
+<body class="bg-img-container bg-img-container-register">
     <!--wrapper-->
-    <div class="wrapper">
-        <div class="d-flex align-items-center justify-content-center my-5 my-lg-0">
+    <div class="wrapper" style="background-color: white; height:100vh">
+        <div class="d-flex align-items-center
+        justify-content-center my-5 my-lg-0">
             <div class="container">
                 <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-2">
                     <div class="col mx-auto">
                         <div class="my-4 text-center">
                             <img src="assets/images/pnex-icon.png" width="180" alt="" />
                         </div>
-                        <div class="card bg-transparent blured-card blured-card-register fade-in-card" >
+                        <div class="card bg-transparent blured-card blured-card-register fade-in-card">
                             <div class="card-body">
-                                <div class="border p-4 rounded">
+                                <div class="p-4">
                                     <div class="text-center">
-                                        <h3 class="">Sign Up</h3>
-                                        <p>Already have an account? <a href="{{ url('/') }}" style="color: #ff0027; ">Sign in here</a>
-                                        </p>
+                                        <h3 class="">Create an Account</h3>
+
                                     </div>
                                     @if (Session::has('status'))
-                                        <div class="alert alert-{{ Session::get('status') }} border-0 bg-{{ Session::get('status') }} alert-dismissible fade show" id="dismiss">
-                                            <div class="text-white">{{ Session::get('message')}}</div>
+                                        <div class="alert alert-{{ Session::get('status') }} border-0 bg-{{ Session::get('status') }} alert-dismissible fade show"
+                                            id="dismiss">
+                                            <div class="text-white">{{ Session::get('message') }}</div>
                                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                                 aria-label="Close"></button>
-                                                {{ Session::forget('status') }}
-                                                {{ Session::forget('message') }}
+                                            {{ Session::forget('status') }}
+                                            {{ Session::forget('message') }}
                                         </div>
                                     @endif
-                                    <div class=" text-center mb-4"> <span> SIGN UP WITH EMAIL</span>
-                                        <hr/>
-                                    </div>
-                                    <div class="form-body">
-                                        <form class="row g-3 needs-validation" novalidate method="POST" action="{{ url('register') }}">
-                                            @csrf
-                                            <div class="col-sm-12">
-                                                <label for="name" class="form-label">Full Name *</label>
-                                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
-                                                    placeholder="Name" required>
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">Please Enter Your Name</div>
-                                            </div>
 
-                                            <div class="col-12">
-                                                <label for="email" class="form-label">Email Address
-                                                    *</label>
-                                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"
-                                                    placeholder="example@user.com" required>
+                                    <hr />
+                                </div>
+                                <div class="form-body">
+                                    <form class="row g-3 needs-validation" novalidate method="POST"
+                                        action="{{ url('register') }}">
+                                        @csrf
+                                        <div class="col-sm-12">
+                                            <label for="name" class="form-label">Full Name</label>
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                value="{{ old('name') }}" placeholder="Name"
+                                                style="background-color: #f9f9f9; border-radius:10px" required>
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please Enter Your Name</div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <label for="username" class="form-label">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                value="{{ old('username') }}" placeholder="username"
+                                                style="background-color: #f9f9f9; border-radius:10px" required>
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please Enter Your Name</div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="email" class="form-label">Email Address
+                                            </label>
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                value="{{ old('email') }}" placeholder="example@user.com"
+                                                style="background-color: #f9f9f9; border-radius:10px" required>
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please Enter a Valid Email Address</div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="password" class="form-label">Password</label>
+                                            <div class="input-group" id="show_hide_password">
+                                                <input type="password" class="form-control border-end-0" id="password"
+                                                    name="password" placeholder="Enter Password"
+                                                    style="background-color: #f9f9f9; border-radius:10px" required
+                                                    minlength="5">
+                                                <a href="javascript:;" class="input-group-text bg-transparent"><i
+                                                        class='bx bx-hide'></i></a>
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">Please Enter a Valid Email Address</div>
-                                            </div>
-                                            <div class="col-12">
-                                                <label for="password" class="form-label">Password *</label>
-                                                <div class="input-group" id="show_hide_password">
-                                                    <input type="password" class="form-control border-end-0"
-                                                        id="password" name="password" placeholder="Enter Password"
-                                                        required minlength="5">
-                                                    <a href="javascript:;" class="input-group-text bg-transparent"><i
-                                                            class='bx bx-hide'></i></a>
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                    <div class="invalid-feedback">Password must be 5 characters long
-                                                    </div>
+                                                <div class="invalid-feedback">Password must be 5 characters long
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div class="col-12">
-                                                <label for="phone_no" class="form-label">Phone No
-                                                    *</label>
-                                                <input type="number" class="form-control" id="phone_no"
-                                                    name="phone_no" placeholder="Phone No" required minlength="11" value="{{ old('phone_no') }}">
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">Phone No must be 11 characters long</div>
+                                        <div class="col-12">
+                                            <label for="phone_no" class="form-label">Phone No
+                                            </label>
+                                            <input type="number" class="form-control" id="phone_no"
+                                                style="background-color: #f9f9f9; border-radius:10px" name="phone_no"
+                                                placeholder="Phone No" required minlength="11"
+                                                value="{{ old('phone_no') }}">
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Phone No must be 11 characters long</div>
+                                        </div>
+
+
+                                        <div class="col-12 mt-3">
+                                            <div class="d-grid">
+                                                <button type="submit" class="btn btn-primary"
+                                                    style="background-color: #0092CD; border-radius:15px ">Sign
+                                                    up</button>
                                             </div>
-
-
-                                            <div class="col-12 mt-3">
-                                                <div class="d-grid">
-                                                    <button type="submit" class="btn btn-primary" style="background-color: #ff0027; "><i
-                                                            class='bx bx-user'></i>Sign up</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                        <div class="col-md-12 text-center">
+                                            <p>Already have an account? <a href="{{ url('login') }}"
+                                                    style="color: #0092CD7">Log in </a>
+                                            </p>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--end row-->
             </div>
+            <!--end row-->
         </div>
+    </div>
     </div>
     <!--end wrapper-->
     <!-- Bootstrap JS -->
