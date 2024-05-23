@@ -57,9 +57,9 @@ class AuthController extends Controller
         $user = User::find($userId);
 
         if ($user) {
+            // Generate a new OTP
             $number = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
             $user->otp_code = $number;
-            $user->otp_time = Carbon::now();
             $user->save();
 
             return redirect('verify-account')->with([
@@ -101,13 +101,11 @@ class AuthController extends Controller
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->username = $request->username;
             $user->role_id = 2;
             $user->password = Hash::make($request->password);
             $user->phone_no = $request->phone_no;
             $number = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
             $user->otp_code = $number;
-            $user->otp_time = Carbon::now();
             $user->save();
 
             $userData = User::where('id', $user->id)->first();
@@ -131,12 +129,6 @@ class AuthController extends Controller
 
         $user = User::findOrFail($userId);
 
-        $otpTime = Carbon::parse($user->otp_time);
-        if (Carbon::now()->diffInMinutes($otpTime) > 5) {
-            return redirect()->back()->withInput()->with(['status' => 'danger', 'message' => "Your OTP has expired"]);
-        }
-
-
         if ($otp === $user->otp_code) {
             $user->email_verified_date = Carbon::now();
             $user->save();
@@ -145,8 +137,6 @@ class AuthController extends Controller
         } else {
             return redirect()->back()->withInput()->with(['status' => 'danger', 'message' => "Invalid Otp"]);
         }
-
-
     }
 
 

@@ -29,7 +29,10 @@ class User extends Authenticatable
         'plan_id',
         'phone_no',
         'otp_code',
+<<<<<<< HEAD
         'otp_time',
+=======
+>>>>>>> 86385c80bfa9344a15abd398a4bec9e4a266538d
         'first_login'
     ];
     /**
